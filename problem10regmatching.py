@@ -11,12 +11,15 @@ class Solution:
         starflag = 0  # 0：之前无*标  1：之前有星标
         starletter = ''  #之前星标对应的字母
 
-        while i<len1 :
+        while i<len1:
+            if j>=len2 and starflag ==0:
+                return False
             if starflag== 0:
                 if j<len2-1 and p[j+1]=="*":
                     starflag = 1
                     starletter = p[j]
                     j+=2
+                    continue
                 else:
                     if s[i] == p[j] or p[j]==".":
                         i +=1
@@ -26,15 +29,34 @@ class Solution:
                         return False
 
             if starflag == 1:  #当前处在星标状态
-                if s[i] == starletter or starletter == "."
+                if s[i] == starletter or starletter == ".":
                     i +=1
                 else:
                     starletter=""
                     starflag = 0
                 continue
 
-        pass
-
+        if j<len2:
+            return False
+        return True
 
 if __name__ == '__main__':
-    pass
+    # s="aa"
+    # p="a*"
+    # print(Solution().isMatch(s,p))
+    #
+    # s = "ab"
+    # p = ".*"
+    # print(Solution().isMatch(s, p))
+
+    # s = "mississippi"
+    # p = "mis*is*p*."
+    # print(Solution().isMatch(s, p))
+
+    s = "ab"
+    p = ".*C"
+    print(Solution().isMatch(s, p))
+
+    s = "aaa"
+    p = "a*a"
+    print(Solution().isMatch(s, p))
