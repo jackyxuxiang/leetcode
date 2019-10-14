@@ -10,6 +10,7 @@ class Solution:
         j = 0
         starflag = 0  # 0：之前无*标  1：之前有星标
         starletter = ''  #之前星标对应的字母
+        laststarmatch=[]
 
         while i<len1:
             if j>=len2 and starflag ==0:
@@ -30,6 +31,7 @@ class Solution:
 
             if starflag == 1:  #当前处在星标状态
                 if s[i] == starletter or starletter == ".":
+                    laststarmatch.append(s[i])
                     i +=1
                 else:
                     starletter=""
@@ -41,9 +43,9 @@ class Solution:
         return True
 
 if __name__ == '__main__':
-    # s="aa"
-    # p="a*"
-    # print(Solution().isMatch(s,p))
+    s="aa"
+    p="a"
+    print(Solution().isMatch(s,p))
     #
     # s = "ab"
     # p = ".*"
@@ -58,5 +60,5 @@ if __name__ == '__main__':
     print(Solution().isMatch(s, p))
 
     s = "aaa"
-    p = "a*a"
+    p = ".*a"
     print(Solution().isMatch(s, p))
